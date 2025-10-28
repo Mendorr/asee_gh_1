@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+        with:
+          submodules: recursive
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -21,11 +23,10 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd ../../pytest-fixtures-example
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           pip install pytest
 
       - name: Run tests with pytest
         run: |
-          pytest -v
+          pytest -v pytest-fixtures-examples
